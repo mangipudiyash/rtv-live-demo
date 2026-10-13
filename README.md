@@ -1,6 +1,7 @@
 # RTV Live — News, Safety Pulse & RTV Instant
 
-A concept news platform built on RTV's public news feed. Not affiliated with RTV News Network.
+A concept news platform by [@mangipudiyash](https://github.com/mangipudiyash), built on RTV's public news feed.
+Not affiliated with RTV News Network. All stories and photos belong to RTV.
 
 **Live site:** open the link in the "About" section of this repository →
 
@@ -28,13 +29,19 @@ Press play and the latest stories become a continuous, narrated broadcast:
 - Channels: Top stories, Near me, Telangana, Andhra Pradesh, National, International and more
 
 ### 📰 Reading experience
-In-app reader with listen-aloud, text size, save and share · search across 6,000+ stories ·
-section browsing with pagination · "Near you" and "Picked for you" rows · live weather ·
+In-app reader with listen-aloud, text size, save and share · instant search ·
+section browsing · "Near you" and "Picked for you" rows · live weather ·
 live TV · "JUST IN" alerts for newly published stories · dark mode · fully responsive.
 
+## How it stays light on the source
+Visitors never contact RTV's servers. A GitHub Actions job (`.github/workflows/update-news.yml`)
+reads RTV's public feed **once an hour** — about 2 requests plus any new photos — and publishes a
+static snapshot (`data/`, `img/`) with the site. If the feed doesn't answer, the run is skipped and
+the previous snapshot stays live.
+
 ## Tech
-Vanilla JavaScript, HTML and CSS — no frameworks. Runs entirely in the browser with no backend:
-WordPress REST API (news), Open-Meteo (weather & air quality), USGS (earthquakes),
-OpenStreetMap / Nominatim (places & nearest help), Web Speech API (narration).
+Vanilla JavaScript, HTML and CSS — no frameworks, no backend. GitHub Actions + Pages for the hourly
+snapshot; Open-Meteo (weather & air quality), USGS (earthquakes), OpenStreetMap / Nominatim
+(places & nearest help) and the Web Speech API (narration) at view time.
 
 All news content belongs to RTV News Network.
