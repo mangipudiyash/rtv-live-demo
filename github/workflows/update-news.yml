@@ -1,0 +1,63 @@
+# Refreshes the news snapshot once an hour and publishes the site to GitHub Pages.
+# Visitors only ever load this snapshot — they never contact RTV's servers.
+name: Update news
+
+on:
+  schedule:
+    - cron: "17 * * * *"     # hourly, at :17 past
+  workflow_dispatch:          # "Run workflow" button for a manual refresh
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Restore photo cache
+        uses: actions/cache/restore@v4
+        with:
+          path: img-cache
+          key: img-${{ github.run_id }}
+          restore-keys: img-
+
+      - name: Snapshot the news (about 2 requests + new photos)
+        run: node scripts/snapshot.mjs
+
+      - name: Save photo cache
+        uses: actions/cache/save@v4
+        with:
+          path: img-cache
+          key: img-${{ github.run_id }}
+
+      - name: Add the site pages
+        run: cp index.html instant.html _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
