@@ -38,6 +38,8 @@ jobs:
 
       - name: Snapshot the news (about 2 requests + new photos)
         run: node scripts/snapshot.mjs
+        env:
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
       - name: Save photo cache
         uses: actions/cache/save@v4
@@ -46,7 +48,7 @@ jobs:
           key: img-${{ github.run_id }}
 
       - name: Add the site pages
-        run: cp index.html instant.html _site/
+        run: cp *.html _site/ && cp -f *.webmanifest *.png _site/ 2>/dev/null || true
 
       - uses: actions/upload-pages-artifact@v3
         with:
