@@ -28,6 +28,17 @@ Press play and the latest stories become a continuous, narrated broadcast:
 - Lower-thirds, live bug, headline ticker, "Up next", swipeable vertical reels on phones
 - Channels: Top stories, Near me, Telangana, Andhra Pradesh, National, International and more
 
+### 🗺 Live News Map
+Every story is pinned where it happened — India and the world — with glowing hotspots, flight-path arcs
+between places in the same story, and a **time-lapse** of up to 14 days of news rippling across the map
+(live clock, activity graph, "breaking" cards). Tap a place to fly to it, read its stories, or play its own
+RTV Instant bulletin. Places are tagged by the hourly job; land is drawn without political borders.
+
+### 📺 My Show — a personal news show
+A 4-step setup (name, areas, topics, length) builds a personal RTV Instant bulletin: the anchor greets you by
+name, plays your areas first and skips what you've already seen. Daily reminder via a calendar file, and
+"Add to Home Screen" as an app. Preferences stay on the viewer's device.
+
 ### 📰 Reading experience
 In-app reader with listen-aloud, text size, save and share · instant search ·
 section browsing · "Near you" and "Picked for you" rows · live weather ·

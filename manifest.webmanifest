@@ -1,0 +1,13 @@
+{
+  "name": "RTV Live — News, My Show & News Map",
+  "short_name": "RTV Live",
+  "start_url": "./?show=1",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0D0B14",
+  "theme_color": "#12101A",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
